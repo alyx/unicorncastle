@@ -1,0 +1,53 @@
+extends layout
+
+block more_styles
+    link(rel='stylesheet', href='/css/login.css')
+    link(rel='stylesheet', href='/css/league.css')
+
+block content
+
+    div.register
+        h1.centre REGISTER
+        div#inputbox
+            fieldset.authbox
+                div.input-prepend
+                    span.add-on
+                        i.icon-user
+                    input(id="ruser", type="text", placeholder="Username")
+                div.input-prepend
+                    span.add-on
+                        i.icon-envelope
+                    input(id="email", type="text", placeholder="Email")
+                div.input-prepend
+                    span.add-on
+                        i.icon-lock
+                    input(id="rpass", type="password", placeholder="Password")
+                input.register.btn.btn-large(type="button", value="Submit")
+    div.login
+        h1.centre LOGIN
+        div#inputbox
+            fieldset.authbox
+                div.input-prepend
+                    span.add-on
+                        i.icon-user
+                    input(id="user", type="text", placeholder="Username", required)
+                div.input-prepend
+                    span.add-on
+                        i.icon-key
+                    input(id="pass", type="password", placeholder="Password", required)
+                input.login.btn.btn-large(class="loginbtn", type="button", value="Submit")
+                
+    div#options
+        h1.centre#register REGISTER
+        h2.centre or
+        h1.centre#login LOGIN
+
+    div.modal#authenticating
+        div.modal-header
+            h3 Authenticating
+        div.modal-body
+         p You are now being logged into #{network} services.
+         img(src="/img/loading.gif", alt="Loading...")
+
+block javascripts
+    script(src="/js/login.js", type="text/javascript")

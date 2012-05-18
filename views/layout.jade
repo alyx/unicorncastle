@@ -1,0 +1,36 @@
+- var network = "PlexBox"
+
+!!! 5
+html
+  head
+    meta(charset="utf-8")
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    block more_styles
+    script(type='text/javascript', src='/js/jquery-1.7.2.min.js')
+    script(type='text/javascript', src='/js/jquery.cookie.min.js')
+    script(src="/js/bootstrap.min.js", type="text/javascript")
+    style
+        body {
+            padding-top: 60px;
+        }
+  body
+    div.navbar.navbar-fixed-top
+        div.navbar-inner
+            div.container
+                a.brand(href="#")
+                    #{network}
+                div.nav-collapse
+                    ul.nav
+                        li.active
+                            a(href="#") Home
+                        li 
+                            a(href="#about") About
+                        li 
+                            a(ref="#contact") Contact
+    div.container            
+        block content
+
+    block javascripts

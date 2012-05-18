@@ -1,0 +1,72 @@
+body
+{
+    background: #def;
+}
+
+h1
+{
+    font-family: LeagueGothicRegular, Helvetica, Verdana, sans-serif;
+    letter-spacing: 4px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-size: 200px;
+    line-height: 0.5em;
+    text-transform: uppercase;
+
+}
+
+h2
+{
+    font-size: 75px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h1.centre
+{
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+}
+h2.centre
+{
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1#register:hover, h1#login:hover
+{
+    color: #39AAFA;
+    text-shadow: 1px 1px 2px #333;
+}
+
+#inputbox
+{
+    padding: 10px 10px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.login, div.register {
+    display: none;
+}
+
+fieldset.authbox
+{
+    padding: 10px 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #888;
+}
+
+#authenticating
+{
+    display: none;
+}
+
+.modal-body #authenticating
+{
+    margin: 0 auto;
+}

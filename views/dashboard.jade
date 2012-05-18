@@ -1,0 +1,24 @@
+extends layout
+
+block more_styles
+    link(rel='stylesheet', href='/css/dash.css')
+
+block content
+
+    div.modal#waiting
+        div.modal-header
+            h3 Loading
+        div.modal-body
+            p Your AWP dashboard is being generated, please wait.
+            img(src="/img/loading.gif", alt="Loading...")
+
+    div.container-fluid
+        div.row-fluid
+            div.span5
+            
+            div.well.span7
+                h1 Memos
+
+
+block javascripts
+    script(src="/js/dashboard.js", type="text/javascript")
