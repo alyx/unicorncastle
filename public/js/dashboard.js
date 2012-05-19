@@ -16,7 +16,7 @@ $.ajax({
         if (res.list === null)
         {
             console.log("Checked..");
-            window.setTimeout(250, checkMemos());
+            window.setTimeout(checkMemos, 250);
         }
     }
 });
@@ -29,10 +29,10 @@ function checkMemos()
         data: 'uuid=' + $.cookie("awp_uuid"),
         dataType: 'json',
         success: function(res) {
-            if (res.list === undefined)
+            if (res.list === undefined || res.list === null)
             {
                 console.log("Rechecking");
-                window.setTimeout(250, checkMemos());
+                window.setTimeout(checkMemos, 250);
                 return;
             }
             else if (res.list === -1)
@@ -43,8 +43,7 @@ function checkMemos()
             else
             {
                 console.log("Looping");
-                console.log(res.list);
-                res.messages.forEach(function(element) {
+                res.list.messages.forEach(function(element) {
                     $("<p>" + element + "<p>").insertAfter($('h1'));
                     console.log(element);
                 });
