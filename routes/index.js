@@ -3,6 +3,13 @@ var ctrl = require("../atheme.js"),
     uuid = require('node-uuid'),
     util = require('util');
 
+function uuid(req, res)
+{
+    var date = new Date();
+    console.log(date.getTime);
+    return "goats";
+}
+
 var au = {
     login: function(req, res)
     {
@@ -23,6 +30,7 @@ var au = {
             client = ctrl.create(xml.createClient({host:'scylla.unlink.nswier.edu.au', port: 8080, path: '/xmlrpc'}),
                     req.body.user, req.connection.remoteAddress);
             var id = uuid.v4(null, null, 16);
+            console.log(id);
             clients[id] = client;
 
             ctrl.login(client, req.body.pass);
@@ -43,10 +51,12 @@ var au = {
 
     go: function(req, res)
     {
+        console.log("Go 1 called");
         if (req.params.service === "memoserv")
         {
             if (req.params.command === "list")
             {
+                console.log("Go called");
                 return au.services.memoserv.list.go(req, res);
             }
         }
@@ -73,7 +83,6 @@ var au = {
               }
 }
 
-
 /*
  * GET home page.
  */
@@ -83,8 +92,7 @@ exports.index = function(req, res){
 };
 
 exports.dashboard = function(req, res){
-    //res.render('dashboard', {words: "piss shit dicks", title: 'AWP Dashboard'});
-    res.render('dashboard', {title: 'AWP Dashboard', words: JSON.stringify('words: ["piss", "shit", "dicks"]')});
+    res.render('dashboard', {title: 'AWP Dashboard'});
 };
 
 exports.lols = function(req, res)
@@ -106,12 +114,14 @@ exports.atheme = function(req, res)
 
     if (req.params.verb === "check")
     {
+        console.log("Check!");
         if (req.body.uuid === undefined || clients[req.body.uuid] === undefined)
             return;
         return au.check(req, res);
     }
     else if (req.params.verb === "do")
     {
+        console.log("Do!");
         return au.go(req, res);
     }
 
