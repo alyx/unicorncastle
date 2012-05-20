@@ -7,6 +7,10 @@ lib-cov
 *.pid
 *.gz
 
+*.swo
+*.swp
+*.un~
+
 pids
 logs
 results
