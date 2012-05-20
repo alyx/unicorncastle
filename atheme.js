@@ -1,4 +1,5 @@
 var atheme = exports;
+var util = require('util');
 
 function emptyReply(error, value) { };
 
@@ -92,20 +93,26 @@ atheme.memoserv = {
                       [client.authcookie, client.user, client.ip, 'MemoServ', 'LIST'],
                       function(error, value)
                       {
-                          var msgs = new Array();
+                          var count = new Object();
                           var rawLine = value.split('\n');
-                          var total = rawLine[0].split(' ')[2];
-                          var newmsg = rawLine[0].split(' ')[4].substr(1);
-                          rawLine.shift;
-                          rawLine.shift;
 
-                          for(var i = 0; i > rawLine.length; i++)
+                          count["new"] = rawLine[0].split("(")[1].split(" ")[0];
+                          count["total"] = rawLine[0].split(" ")[2];
+
+                          var i;
+                          var messages = new Array;
+                          for (i = 2; rawLine[i] != undefined; i++)
                           {
-                              msgs[i]["from"] = rawLine[i].split(' ')[2];
-                              msgs[i]["when"] =  rawLine[i].split('Sent: ')[2];
+                              messages[i - 2] = new Object();
+                              messages[i - 2]["from"] = rawLine[i].split(" ")[3];
+                              messages[i - 2]["when"] = rawLine[i].split(": ")[2];
                           }
                         
-                          client.data.memoserv.list = {messages: msgs};
+                          var list = new Object;
+                          list["count"] = count;
+                          list["messages"] = messages;
+                          client.data.memoserv.list = JSON.stringify(list);
+                          console.log(util.inspect(client.data.memoserv.list))
                       });
           },
 
