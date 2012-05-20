@@ -4,18 +4,15 @@ $("#waiting").modal({
     show: true
 });
 
-console.log("Cookie UUID: " + $.cookie("awp_uuid"));
-
 $.ajax({
     url: '/atheme/do/memoserv/list',
     type: 'POST',
     data: 'uuid=' + $.cookie("awp_uuid"),
     dataType: 'json',
     success: function(res) {
-        console.log("Succes!")
+        console.log(res);
         if (res.list === null)
         {
-            console.log("Checked..");
             window.setTimeout(checkMemos, 250);
         }
     }
@@ -31,7 +28,6 @@ function checkMemos()
         success: function(res) {
             if (res.list === undefined || res.list === null)
             {
-                console.log("Rechecking");
                 window.setTimeout(checkMemos, 250);
                 return;
             }
@@ -42,10 +38,10 @@ function checkMemos()
             }
             else
             {
-                console.log("Looping");
-                res.list.messages.forEach(function(element) {
-                    $("<p>" + element + "<p>").insertAfter($('h1'));
-                    console.log(element);
+                var listing = JSON.parse(res.list);
+                listing.messages.forEach(function(element) {
+                    var listEl = $("<li>" + element.from + " [" + element.when + "]</li>");
+                    $("#memos").append(listEl);
                 });
                 $("#waiting").modal("hide");
             }

@@ -43,7 +43,7 @@ $("input.login").click(function(){
                 $.cookie("awp_uuid", uuid);
                 window.setTimeout(250, checkLogin());
             }
-            else alert("Something fucked up.");
+            else console.log("Something fucked up.");
         }
     });
 });
@@ -63,10 +63,14 @@ function checkLogin()
             }
             else if (res.authcookie === -1)
             {
-                alert("Authentication failed!");
+                console.log("Authentication failed!");
                 return;
             }
-            else alert("Authcookie: " + res.authcookie);
+            else
+            {
+                console.log("Authcookie: " + res.authcookie);
+                window.location.href = "/dash";
+            }
         }
     });
 }
